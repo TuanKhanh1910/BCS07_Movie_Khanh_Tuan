@@ -8,7 +8,7 @@ import Page404 from "./pages/Page404/Page404";
 import UserManagement from "./pages/UserManagement/UserManagement";
 import AdminTemplate from "./template/AdminTemplate/AdminTemplate";
 import UserTemplate from "./template/UserTemplate";
-
+import Regis from "./pages/Regis/Regis";
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +16,7 @@ function App() {
         <Route path="/" element={<UserTemplate />}>
           <Route index element={<HomePage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/regis" element={<Regis />} />
           <Route path="/detail">
             <Route path=":maPhim" element={<MovieDetails />} />
           </Route>

@@ -1,8 +1,9 @@
 import { useFormik } from "formik";
 import React from "react";
 import * as yub from "yup";
-import { nguoiDungServ } from "../../services/nguoiDungServ";
+
 import { useNavigate } from "react-router-dom";
+import { userServ } from "../../services/userServices";
 const FormRegis = () => {
   const navigate = useNavigate();
   const formik = useFormik({
@@ -16,7 +17,7 @@ const FormRegis = () => {
     },
     onSubmit: async (values) => {
       console.log(values);
-      const res = await nguoiDungServ.regisUser(values);
+      const res = await userServ.regisUser(values);
       alert("Đăng Kí Thành Công");
       setTimeout(navigate("/login"), 3000);
       console.log(res);
