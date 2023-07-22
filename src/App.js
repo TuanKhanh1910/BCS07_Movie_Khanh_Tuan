@@ -9,7 +9,6 @@ import UserManagement from "./pages/UserManagement/UserManagement";
 import AdminTemplate from "./template/AdminTemplate/AdminTemplate";
 import UserTemplate from "./template/UserTemplate";
 import Regis from "./pages/Regis/Regis";
-
 function App() {
   return (
     <BrowserRouter>

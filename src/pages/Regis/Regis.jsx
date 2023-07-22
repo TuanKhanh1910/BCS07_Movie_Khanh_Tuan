@@ -1,7 +1,8 @@
 import React from "react";
 import Lottie from "react-lottie";
 import * as animationRegis from "../../assets/animation/regisUser.json";
-import FormRegis from "../../Component/FormRegis/FormRegis";
+import FormRegis from "../../Components/FormRegis/FormRegis";
+
 const Regis = () => {
   const defaultOptions = {
     loop: true,
