@@ -12,3 +12,6 @@ export const layDuLieuLocal = (ten) => {
   //   }
   return JSON.parse(value) ? JSON.parse(value) : null;
 };
+export const xoaLocal = (ten) => {
+  localStorage.removeItem(ten);
+};

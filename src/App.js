@@ -24,8 +24,9 @@ function App() {
           <Route index element={<UserManagement />} />
         </Route>
         <Route path="/admin-login" element={<LoginAdmin />} />
+
         <Route path="*" element={<Page404 />} />
-        {/* <Route path="/loading" element={<Loading />} /> */}
+        <Route path="/loading" element={<Loading />} />
       </Routes>
     </BrowserRouter>
   );
