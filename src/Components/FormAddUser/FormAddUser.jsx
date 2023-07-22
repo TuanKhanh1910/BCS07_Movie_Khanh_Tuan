@@ -1,12 +1,7 @@
 import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllUser,
-  getAllUserAPI,
-  updateUser,
-  updateUserAPI,
-} from "../../redux/slices/userSlice";
+import { getAllUserAPI, updateUserAPI } from "../../redux/slices/userSlice";
 import { userServ } from "../../services/userServices";
 import * as yup from "yup";
 

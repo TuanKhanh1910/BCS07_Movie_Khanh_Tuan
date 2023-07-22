@@ -34,9 +34,11 @@ export const userSlice = createSlice({
   reducers: {
     // là nơi viết ra các method,
     setDuLieuHoTen: (state, action) => {
-      console.log("action: ", action);
-      // check xem hoTen có dữ liêu hay không, nếu ko có set dữ liệu cho nó
+      //check xem hoTen co du lieu hay ko neu ko co set du lieu cho no
+      console.log(action.payload);
       if (state.hoTen == null) {
+        state.hoTen = action.payload;
+      } else if (action.payload == null) {
         state.hoTen = action.payload;
       }
     },

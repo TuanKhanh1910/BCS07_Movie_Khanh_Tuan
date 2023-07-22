@@ -18,4 +18,7 @@ export const userServ = {
   updateUser: (data) => {
     return https.post("/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung", data);
   },
+  regisUser: (data) => {
+    return https.post("/api/QuanLyNguoiDung/DangKy", data);
+  },
 };

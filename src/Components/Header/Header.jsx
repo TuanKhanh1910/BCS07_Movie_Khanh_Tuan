@@ -1,10 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-scroll";
+import { xoaLocal } from "../../util/localStore";
+import { setDuLieuHoTen } from "../../redux/slices/userSlice";
 
 const Header = () => {
   const { hoTen } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const dangXuatUser = () => {
+    xoaLocal("user");
+    dispatch(setDuLieuHoTen(null));
+    alert("Đăng Xuất Thành Công !!!!");
+  };
   // ở đây có thể hiểu khúc useSelector giúp truy cập tới initialState của userSlice nên có thể dùng bóc tách phần tử để bóc ra thuộc tính hoTen
   return (
     <nav className="bg-white dark:bg-gray-900  w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
@@ -21,16 +29,30 @@ const Header = () => {
         </NavLink>
         <div className="flex md:order-2">
           {hoTen != null ? (
-            <p className="text-white">{hoTen.hoTen}</p>
+            <div className="flex text-white items-center">
+              xin chao, {hoTen.hoTen}
+              <div className="ml-4 bg-orange-400 rounded-lg py-2 px-5">
+                <button onClick={dangXuatUser} className="rounded-lg">
+                  Đăng Xuất
+                </button>
+              </div>
+            </div>
           ) : (
             <div>
-              <NavLink to="/login" className="text-white text-xl">
-                <i className="fa-solid fa-circle-user mr-2"></i>
-                Đăng nhập
+              <NavLink
+                type="button"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                to="login"
+              >
+                <i className="fa-regular fa-circle-user text-xl mr-2" /> Đăng
+                Nhập
               </NavLink>
-              <NavLink to="/" className="text-white text-xl ml-4">
-                <i className="fa-solid fa-circle-user mr-2"></i>
-                Đăng ký
+              <NavLink
+                type="button"
+                className="text-white ml-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                to="/regis"
+              >
+                <i className="fa-regular fa-circle-user text-xl mr-2" /> Đăng Ký
               </NavLink>
             </div>
           )}

@@ -10,5 +10,6 @@ export const store = configureStore({
     loading: loadingSlice,
     btnReadOnly: btnSlice,
     movie: detailsMovieSlice,
+    // hoho
   },
 });

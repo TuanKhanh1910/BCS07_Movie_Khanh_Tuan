@@ -18,5 +18,5 @@ const Footer = () => {
     </div>
   );
 };
-//day la footer
+
 export default Footer;
