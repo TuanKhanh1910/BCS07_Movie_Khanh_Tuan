@@ -5,7 +5,7 @@ export const getDetailsMovieAPI = createAsyncThunk(
   "movie/getDetailsMovieAPI",
   async (maPhim) => {
     const res = await movieServ.getDetailsMovie(maPhim);
-    console.log("res: ", res);
+    // console.log("res: ", res);
     return res.data.content;
   }
 );
@@ -20,7 +20,7 @@ const detailsMovieSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getDetailsMovieAPI.fulfilled, (state, action) => {
-      console.log("action: ", action);
+      // console.log("action: ", action);
       state.movie = action.payload;
     });
     builder.addCase(getDetailsMovieAPI.rejected, (state, action) => {

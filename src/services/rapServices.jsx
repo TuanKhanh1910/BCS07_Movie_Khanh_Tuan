@@ -11,4 +11,17 @@ export const rapServ = {
       `api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThongRap}&maNhom=GP09`
     );
   },
+  getInfoScheduleFilm: (maPhim) => {
+    return https.get(
+      `/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`
+    );
+  },
+  getDetailTicket: (maLichChieu) => {
+    return https.get(
+      `/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`
+    );
+  },
+  getControlTicket: (data) => {
+    return https.post("/api/QuanLyDatVe/DatVe", data);
+  },
 };

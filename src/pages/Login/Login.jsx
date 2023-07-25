@@ -12,7 +12,7 @@ const Login = () => {
     },
   };
   return (
-    <div className="flex">
+    <div className="flex items-center">
       <div className="w-1/2">
         <Lottie options={defaultOptions} height={400} width={400} />
       </div>

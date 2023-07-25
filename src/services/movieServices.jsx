@@ -10,5 +10,6 @@ export const movieServ = {
   getDetailsMovie: (maPhim) => {
     return https.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`);
   },
+  
 };
 // hihi

@@ -9,6 +9,8 @@ import UserManagement from "./pages/UserManagement/UserManagement";
 import AdminTemplate from "./template/AdminTemplate/AdminTemplate";
 import UserTemplate from "./template/UserTemplate";
 import Regis from "./pages/Regis/Regis";
+import BookTickets from "./pages/BookTickets/BookTickets";
+import CheckoutTemplate from "./template/CheckoutTemPlate/CheckoutTemplate";
 function App() {
   return (
     <BrowserRouter>
@@ -25,9 +27,11 @@ function App() {
           <Route index element={<UserManagement />} />
         </Route>
         <Route path="/admin-login" element={<LoginAdmin />} />
-
         <Route path="*" element={<Page404 />} />
         <Route path="/loading" element={<Loading />} />
+        <Route path="/checkout" element={<CheckoutTemplate />}>
+          <Route path=":id" element={<BookTickets />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

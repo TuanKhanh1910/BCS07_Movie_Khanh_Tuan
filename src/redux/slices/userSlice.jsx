@@ -17,7 +17,6 @@ export const updateUserAPI = createAsyncThunk(
   async () => {
     const res = await userServ.getAllUser();
     console.log("res: ", res);
-
     return res.data.content;
   }
 );

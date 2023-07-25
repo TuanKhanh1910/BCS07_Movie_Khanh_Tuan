@@ -1,0 +1,42 @@
+.screen {
+  border-bottom: 30px solid rgb(67, 218, 196);
+  /* border-top-left-radius: 50px solid transparent; */
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  height: 60;
+  width: 100%;
+  filter: drop-shadow(4px 30px 20px rgba(255, 255, 255, 0.5));
+  font-size: 15px;
+  color: #fff;
+  filter: drop-shadow(-2px 61px 33px #000000);
+  -webkit-filter: drop-shadow(-2px 61px 33px #000000);
+  -moz-filter: drop-shadow(-2px 61px 33px #000000);
+}
+
+.ghe {
+  /* ghế thường*/
+  width: 35px;
+  height: 35px;
+  border: 1px solid green;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+  background-color: rgb(112, 101, 84);
+  /* hover: */
+}
+.ghe:hover {
+  background-color: rgb(147, 97, 22);
+  transition: all 0.5s;
+}
+.gheDaDat {
+  background-color: rgb(75, 13, 13);
+  cursor: no-drop;
+}
+
+.gheDangDat {
+  background-color: greenyellow !important;
+}
+
+.gheVip {
+  background-color: orange;
+}

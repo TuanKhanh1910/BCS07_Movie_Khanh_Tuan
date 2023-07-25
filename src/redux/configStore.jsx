@@ -3,6 +3,8 @@ import btnSlice from "./slices/btnSlice";
 import detailsMovieSlice from "./slices/detailsMovieSlice";
 import loadingSlice from "./slices/loadingSlice";
 import userSlice from "./slices/userSlice";
+import bookingSlice from "./slices/bookingSlice";
+import controlMovieSlice from "./slices/controlMovieSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ export const store = configureStore({
     loading: loadingSlice,
     btnReadOnly: btnSlice,
     movie: detailsMovieSlice,
+    schedule: controlMovieSlice,
+    booking: bookingSlice,
     // hoho
   },
 });

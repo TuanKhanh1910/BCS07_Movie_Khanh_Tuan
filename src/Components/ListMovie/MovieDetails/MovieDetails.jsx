@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { getDetailsMovieAPI } from "../../../redux/slices/detailsMovieSlice";
 import momnet from "moment";
+import DisplayHeThongFilm from "./DisplayHeThongFilm";
 
 const MovieDetails = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const { movie } = useSelector((state) => state.movie);
-  console.log("movie: ", movie);
-  console.log("params: ", params);
+  // console.log("movie: ", movie);
+  // console.log("params: ", params);
 
   useEffect(() => {
     dispatch(getDetailsMovieAPI(params.maPhim));
@@ -39,6 +40,7 @@ const MovieDetails = () => {
           </p>
         </div>
       </div>
+      <DisplayHeThongFilm />
       <div className="flex justify-between items-center mt-10 mb-10">
         <NavLink
           to="/"
@@ -46,7 +48,10 @@ const MovieDetails = () => {
         >
           Quay về trang chủ
         </NavLink>
-        <NavLink className="py-2 px-5 bg-orange-500 rounded-lg hover:bg-orange-400 duration-500 font-bold">
+        <NavLink
+          to="/checkout"
+          className="py-2 px-5 bg-orange-500 rounded-lg hover:bg-orange-400 duration-500 font-bold"
+        >
           Đặt vé
         </NavLink>
       </div>

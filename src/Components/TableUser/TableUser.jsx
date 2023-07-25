@@ -56,7 +56,6 @@ const TableUser = () => {
         // console.log("record: ", record);
         // index sẽ là vị trí của những phần tử đó trong mảng
         // console.log("index: ", index);
-
         return (
           <Tag color={text == "QuanTri" ? "magenta" : "green"}>
             {text == "QuanTri" ? "Quản Trị" : "Khách Hàng"}
@@ -95,7 +94,6 @@ const TableUser = () => {
               Delete
             </button>
           </Popconfirm>
-
           <button
             onClick={() => {
               dispatch(layThongTin(record.taiKhoan));
