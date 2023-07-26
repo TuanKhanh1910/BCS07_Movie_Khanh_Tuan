@@ -5,12 +5,12 @@
   border-right: 30px solid transparent;
   height: 60;
   width: 100%;
-  filter: drop-shadow(4px 30px 20px rgba(255, 255, 255, 0.5));
+  filter: drop-shadow(4px 30px 20px rgba(255, 255, 255, 0.177));
   font-size: 15px;
-  color: #fff;
-  filter: drop-shadow(-2px 61px 33px #000000);
-  -webkit-filter: drop-shadow(-2px 61px 33px #000000);
-  -moz-filter: drop-shadow(-2px 61px 33px #000000);
+  color: #fff !important;
+  filter: sepia(2%) brightness(10%) saturate(0%) contrast(47%);
+  -webkit-filter: sepia(2%) brightness(10%) saturate(0%) contrast(47%);
+  -moz-filter: sepia(2%) brightness(10%) saturate(0%) contrast(47%);
 }
 
 .ghe {
@@ -20,7 +20,7 @@
   border: 1px solid green;
   border-radius: 5px;
   cursor: pointer;
-  margin: 10px;
+  margin: 7px;
   background-color: rgb(112, 101, 84);
   /* hover: */
 }
@@ -29,7 +29,7 @@
   transition: all 0.5s;
 }
 .gheDaDat {
-  background-color: rgb(75, 13, 13);
+  background-color: rgba(90, 79, 63, 0.208);
   cursor: no-drop;
 }
 
@@ -39,4 +39,20 @@
 
 .gheVip {
   background-color: orange;
+}
+.yourdesk {
+  background-color: whitesmoke;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  border: 1px solid olivedrab;
+}
+
+:where(.css-dev-only-do-not-override-14wwjjs).ant-tabs-top > .ant-tabs-nav,
+:where(.css-dev-only-do-not-override-14wwjjs).ant-tabs-bottom > .ant-tabs-nav,
+:where(.css-dev-only-do-not-override-14wwjjs).ant-tabs-top
+  > div
+  > .ant-tabs-nav,
+:where(.css-dev-only-do-not-override-14wwjjs).ant-tabs-bottom
+  > div
+  > .ant-tabs-nav {
+  margin-bottom: 0;
 }

@@ -21,4 +21,8 @@ export const userServ = {
   regisUser: (data) => {
     return https.post("/api/QuanLyNguoiDung/DangKy", data);
   },
+  // lấy thông tin tài khoản để trả về các giá trị của các vé người dùng đã đặt
+  layThongTinTaiKhoan: () => {
+    return https.post("/api/QuanLyNguoiDung/ThongTinTaiKhoan");
+  },
 };

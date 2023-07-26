@@ -21,10 +21,20 @@ export const updateUserAPI = createAsyncThunk(
   }
 );
 
+export const layThongTinTaiKhoanApi = createAsyncThunk(
+  "user/layThongTinTaiKhoanApi",
+  async () => {
+    const res = await userServ.layThongTinTaiKhoan();
+    console.log("res: ", res);
+    return res.data.content;
+  }
+);
+
 const initialState = {
   hoTen: layDuLieuLocal("user"),
   users: [],
   changeUsers: {},
+  thongTinTaiKhoan: {},
 };
 
 export const userSlice = createSlice({
@@ -86,6 +96,12 @@ export const userSlice = createSlice({
     builder.addCase(updateUserAPI.rejected, (state, action) => {
       console.log("action.payload: ", action.payload);
       // console.log("state: ", state);
+    });
+
+    // lấy thông tin tài khoản của người dùng đã đặt vé hiển thị lên kết quả đặt vé
+    builder.addCase(layThongTinTaiKhoanApi.fulfilled, (state, action) => {
+      state.thongTinTaiKhoan = action.payload;
+      console.log(action.payload);
     });
   },
 });

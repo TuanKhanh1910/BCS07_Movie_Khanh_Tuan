@@ -35,7 +35,7 @@ const DisplayHeThongFilm = () => {
     <div className="max-w-screen-xl mx-auto m-7 my-10 bg-orange-950 text-white">
       <Tabs
         className="text-white"
-        defaultActiveKey="1"
+        // defaultActiveKey="1"
         items={[
           {
             label: "Lịch Chiếu",

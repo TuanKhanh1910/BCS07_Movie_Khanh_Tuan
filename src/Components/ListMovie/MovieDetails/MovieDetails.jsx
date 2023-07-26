@@ -44,15 +44,9 @@ const MovieDetails = () => {
       <div className="flex justify-between items-center mt-10 mb-10">
         <NavLink
           to="/"
-          className="py-2 px-5 bg-green-500 rounded-lg hover:bg-green-400 duration-500 font-bold "
+          className="py-2 px-5 outline outline-yellow-600 rounded-lg hover:bg-yellow-400 duration-500 font-bold "
         >
           Quay về trang chủ
-        </NavLink>
-        <NavLink
-          to="/checkout"
-          className="py-2 px-5 bg-orange-500 rounded-lg hover:bg-orange-400 duration-500 font-bold"
-        >
-          Đặt vé
         </NavLink>
       </div>
     </div>

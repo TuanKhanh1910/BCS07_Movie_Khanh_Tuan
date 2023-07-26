@@ -16,7 +16,7 @@ export const rapServ = {
       `/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`
     );
   },
-  getDetailTicket: (maLichChieu) => {
+  getListTicketRoom: (maLichChieu) => {
     return https.get(
       `/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`
     );
