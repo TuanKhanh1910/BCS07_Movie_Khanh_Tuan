@@ -50,7 +50,7 @@ const UserManagement = () => {
       <TableUser />
       <Drawer
         title="Thêm người dùng"
-        placement="right"
+        placement="center"
         onClose={onClose}
         open={open}
         size="large"

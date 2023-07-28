@@ -92,7 +92,10 @@ const BookTickets = (props) => {
         }}
       >
         <div className="container ">
-          <div className="flex ">
+          <div
+            className="flex "
+            style={{ maxHeight: "600px", overflowY: "scroll" }}
+          >
             <div className="w-9/12 text-center">
               <div className="my-2 d-flex justify-content-center relative">
                 <div className="bg-yellow-700 h-3 w-full"></div>
@@ -263,6 +266,7 @@ export default DatVeXemPhim;
 const KetQuaDatVe = (props) => {
   const dispatch = useDispatch();
   const { thongTinTaiKhoan } = useSelector((state) => state.thongTinTaiKhoan);
+  // const {}=useSelector((state)=>state.booking)
   useEffect(() => {
     dispatch(layThongTinTaiKhoanApi());
   }, []);
@@ -271,20 +275,24 @@ const KetQuaDatVe = (props) => {
   // console.log("tenPhim", tenPhim);
   return (
     <div>
-      <section className="text-gray-600 body-font overflow-hidden">
-        <div className="container px-5 py-24 mx-auto">
+      <section
+        className="text-gray-600 body-font min-h-screen"
+        style={{ maxHeight: "400px", overflowY: "scroll" }}
+      >
+        <div className="container px-5 py-24 mx-auto ">
           <div className="flex flex-wrap m-4 justify-center">
+            {/* {} */}
             {thongTinTaiKhoan.thongTinDatVe?.map((ticket, index) => {
-              console.log(ticket);
+              console.log("ticket", ticket);
               const seats = _.first(ticket.danhSachGhe);
               console.log("seats", seats);
               return (
                 <div className="p-4 xl:w-1/4 md:w-1/2 w-full" key={index}>
-                  <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+                  <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative ">
                     <h2 className="text-sm tracking-widest title-font mb-1 font-medium  text-yellow-200">
-                      {seats.tenRap}-{seats.maHeThongRap}-{seats.m}
+                      {seats.tenRap}-{seats.maHeThongRap}
                     </h2>
-                    <h1 className="text-xl font-bold text-yellow-400 pb-4 mb-4 border-b border-gray-200 leading-none">
+                    <h1 className="text-lg font-bold text-yellow-400 pb-4 mb-4 border-b border-gray-200 leading-none">
                       {ticket.tenPhim}
                     </h1>
                     <div className="my-5">
@@ -398,9 +406,14 @@ const KetQuaDatVe = (props) => {
                           </svg>
                         </span>
                         Tên Ghế :{" "}
-                        <span className="text-yellow-500 mx-2">
-                          {seats.tenGhe}
-                        </span>
+                        {ticket.danhSachGhe?.map((itemGhe, index) => {
+                          console.log(itemGhe);
+                          return (
+                            <span className="text-yellow-500 mx-2" key={index}>
+                              {itemGhe.tenGhe}
+                            </span>
+                          );
+                        })}
                       </p>
                     </div>
                   </div>
