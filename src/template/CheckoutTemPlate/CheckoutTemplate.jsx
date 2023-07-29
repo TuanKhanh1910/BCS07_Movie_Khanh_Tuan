@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const CheckoutTemplate = () => {
   if (!layDuLieuLocal("user")) {
-    return <NavLink to="/login"></NavLink>;
+    return <NavLink to="/login" />;
   }
   return (
     <Fragment>
