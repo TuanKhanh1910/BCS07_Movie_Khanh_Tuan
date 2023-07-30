@@ -20,6 +20,39 @@ import { layThongTinTaiKhoanApi } from "../../redux/slices/userSlice";
 import _ from "lodash";
 import moment from "moment";
 
+const DatVeXemPhim = (props) => {
+  return (
+    <div
+      className="max-w-screen-xl mx-auto ps-5 mb-0"
+      style={{
+        position: "fixed",
+        width: "100%",
+        height: "100%",
+        backgroundImage: `url(/img/film.jpg)`,
+        backgroundSize: "cover",
+      }}
+    >
+      <Tabs
+        className="text-white"
+        defaultActiveKey="1"
+        items={[
+          {
+            label: "Thông Tin Đặt Vé",
+            key: "1",
+            children: <BookTickets />,
+          },
+          {
+            label: "Kết Quả Đặt Vé",
+            key: "2",
+            children: <KetQuaDatVe />,
+          },
+        ]}
+      />
+    </div>
+  );
+};
+export default DatVeXemPhim;
+
 const BookTickets = (props) => {
   const { hoTen } = useSelector((state) => state.user);
   // console.log(hoTen.taiKhoan);
@@ -27,7 +60,7 @@ const BookTickets = (props) => {
   // console.log("rapPhim: ", rapPhim);
   const { danhSachGhe, thongTinPhim } = rapPhim;
   const { diaChi, tenPhim, ngayChieu, gioChieu } = thongTinPhim;
-  // console.log("danh sách ghê đang đặt :", danhSachGheDangDat);
+  console.log("danh sách ghê đang đặt :", danhSachGheDangDat);
   const params = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -196,12 +229,12 @@ const BookTickets = (props) => {
               <hr />
               <div className="my-5 mr-4 ">
                 <i className="mr-3  text-white">Email :</i>
-                <span className=" text-red-600 ">{hoTen.email}</span>
+                <span className=" text-red-600 ">{hoTen?.email}</span>
               </div>
               <hr />
               <div className="my-5 mr-4 flex ">
                 <i className="mr-3  text-white">Số Điện Thoại :</i>
-                <span className=" text-red-600 ">{hoTen.soDT}</span>
+                <span className=" text-red-600 ">{hoTen?.soDT}</span>
               </div>
               <hr />
               <div className="flex flex-col justify-end items-center">
@@ -228,41 +261,6 @@ const BookTickets = (props) => {
   );
 };
 
-// export default BookTickets;
-
-const DatVeXemPhim = (props) => {
-  return (
-    <div
-      className="max-w-screen-xl mx-auto ps-5 mb-0"
-      style={{
-        position: "fixed",
-        width: "100%",
-        height: "100%",
-        backgroundImage: `url(/img/film.jpg)`,
-        backgroundSize: "cover",
-      }}
-    >
-      <Tabs
-        className="text-white"
-        defaultActiveKey="1"
-        items={[
-          {
-            label: "Thông Tin Đặt Vé",
-            key: "1",
-            children: <BookTickets />,
-          },
-          {
-            label: "Kết Quả Đặt Vé",
-            key: "2",
-            children: <KetQuaDatVe />,
-          },
-        ]}
-      />
-    </div>
-  );
-};
-export default DatVeXemPhim;
-
 const KetQuaDatVe = (props) => {
   const dispatch = useDispatch();
   const { thongTinTaiKhoan } = useSelector((state) => state.thongTinTaiKhoan);
@@ -281,7 +279,6 @@ const KetQuaDatVe = (props) => {
       >
         <div className="container px-5 py-24 mx-auto ">
           <div className="flex flex-wrap m-4 justify-center">
-            {/* {} */}
             {thongTinTaiKhoan.thongTinDatVe?.map((ticket, index) => {
               console.log("ticket", ticket);
               const seats = _.first(ticket.danhSachGhe);

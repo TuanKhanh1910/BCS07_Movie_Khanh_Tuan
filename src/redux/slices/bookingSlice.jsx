@@ -26,9 +26,11 @@ export const getControlTicketApi = createAsyncThunk(
     }
   }
 );
+
 const initialState = {
   rapPhim: new ThongTinLichchieu(),
   danhSachGheDangDat: [],
+  // Ý e là ghế đã đặt cho vào 1 array r để lên redux, xong mang xuống check ở dưới dạch sách ghế đã render, nếu trùng gì mình css cho nó là đã đặt
   controlBooking: {},
 };
 export const bookingSlice = createSlice({
@@ -56,12 +58,11 @@ export const bookingSlice = createSlice({
       // console.log("action:", action.payload);
       state.rapPhim = action.payload;
     });
-    builder.addCase(getListTicketRoomApi.rejected, (state, action) => {
-      // console.log("action: ", action);
-    });
+    // builder.addCase(getListTicketRoomApi.rejected, (state, action) => {
+    //   // console.log("action: ", action);
+    // });
     builder.addCase(getControlTicketApi.fulfilled, (state, action) => {
-      // if()
-      // const index =
+    
       console.log("state:", state);
       console.log("action:", action.payload);
       if (state.controlBooking == null) {
