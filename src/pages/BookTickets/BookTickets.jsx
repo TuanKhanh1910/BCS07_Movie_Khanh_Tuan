@@ -69,7 +69,7 @@ const BookTickets = (props) => {
   // console.log(params.id);
   // console.log(danhSachGhe);
   const renderGhe = () => {
-    return danhSachGhe.map((ghe, index) => {
+    return danhSachGhe?.map((ghe, index) => {
       // console.log(ghe);
       // const sttGhe = ghe;
       let cssGheVip = ghe.loaiGhe == "Vip" ? "gheVip" : "";
