@@ -7,20 +7,30 @@ export const getListTicketRoomApi = createAsyncThunk(
   async (maLichChieu) => {
     const res = await rapServ.getListTicketRoom(maLichChieu);
     // console.log("res: ", res);
+    // if(res){}
     return res.data.content;
   }
 );
 export const getControlTicketApi = createAsyncThunk(
   "ticket/getControlTicketApi",
   async (infoBooking) => {
-    const res = await rapServ.getControlTicket(infoBooking);
-    console.log("res:", res);
-    return res.data.content;
+    try {
+      const res = await rapServ.getControlTicket(infoBooking);
+      // console.log("res:", res);
+
+      alert("Đặt vé thành công");
+      return res.data.content;
+    } catch (error) {
+      alert("Đặt vé thất bại");
+      console.log("error", error);
+    }
   }
 );
+
 const initialState = {
   rapPhim: new ThongTinLichchieu(),
   danhSachGheDangDat: [],
+  // Ý e là ghế đã đặt cho vào 1 array r để lên redux, xong mang xuống check ở dưới dạch sách ghế đã render, nếu trùng gì mình css cho nó là đã đặt
   controlBooking: {},
 };
 export const bookingSlice = createSlice({
@@ -48,15 +58,18 @@ export const bookingSlice = createSlice({
       // console.log("action:", action.payload);
       state.rapPhim = action.payload;
     });
-    builder.addCase(getListTicketRoomApi.rejected, (state, action) => {
-      // console.log("action: ", action);
-    });
+    // builder.addCase(getListTicketRoomApi.rejected, (state, action) => {
+    //   // console.log("action: ", action);
+    // });
     builder.addCase(getControlTicketApi.fulfilled, (state, action) => {
-      // if()
-      // const index =
+    
       console.log("state:", state);
       console.log("action:", action.payload);
-      state.controlBooking = action.payload;
+      if (state.controlBooking == null) {
+        state.controlBooking = action.payload;
+      } else if (state.controlBooking) {
+        state.controlBooking = action.payload;
+      }
     });
   },
 });

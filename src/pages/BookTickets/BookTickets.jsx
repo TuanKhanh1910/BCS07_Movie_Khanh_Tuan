@@ -20,6 +20,39 @@ import { layThongTinTaiKhoanApi } from "../../redux/slices/userSlice";
 import _ from "lodash";
 import moment from "moment";
 
+const DatVeXemPhim = (props) => {
+  return (
+    <div
+      className="max-w-screen-xl mx-auto ps-5 mb-0"
+      style={{
+        position: "fixed",
+        width: "100%",
+        height: "100%",
+        backgroundImage: `url(/img/film.jpg)`,
+        backgroundSize: "cover",
+      }}
+    >
+      <Tabs
+        className="text-white"
+        defaultActiveKey="1"
+        items={[
+          {
+            label: "Thông Tin Đặt Vé",
+            key: "1",
+            children: <BookTickets />,
+          },
+          {
+            label: "Kết Quả Đặt Vé",
+            key: "2",
+            children: <KetQuaDatVe />,
+          },
+        ]}
+      />
+    </div>
+  );
+};
+export default DatVeXemPhim;
+
 const BookTickets = (props) => {
   const { hoTen } = useSelector((state) => state.user);
   // console.log(hoTen.taiKhoan);
@@ -27,7 +60,7 @@ const BookTickets = (props) => {
   // console.log("rapPhim: ", rapPhim);
   const { danhSachGhe, thongTinPhim } = rapPhim;
   const { diaChi, tenPhim, ngayChieu, gioChieu } = thongTinPhim;
-  // console.log("danh sách ghê đang đặt :", danhSachGheDangDat);
+  console.log("danh sách ghê đang đặt :", danhSachGheDangDat);
   const params = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -92,7 +125,10 @@ const BookTickets = (props) => {
         }}
       >
         <div className="container ">
-          <div className="flex ">
+          <div
+            className="flex "
+            style={{ maxHeight: "600px", overflowY: "scroll" }}
+          >
             <div className="w-9/12 text-center">
               <div className="my-2 d-flex justify-content-center relative">
                 <div className="bg-yellow-700 h-3 w-full"></div>
@@ -193,12 +229,12 @@ const BookTickets = (props) => {
               <hr />
               <div className="my-5 mr-4 ">
                 <i className="mr-3  text-white">Email :</i>
-                <span className=" text-red-600 ">{hoTen.email}</span>
+                <span className=" text-red-600 ">{hoTen?.email}</span>
               </div>
               <hr />
               <div className="my-5 mr-4 flex ">
                 <i className="mr-3  text-white">Số Điện Thoại :</i>
-                <span className=" text-red-600 ">{hoTen.soDT}</span>
+                <span className=" text-red-600 ">{hoTen?.soDT}</span>
               </div>
               <hr />
               <div className="flex flex-col justify-end items-center">
@@ -225,44 +261,10 @@ const BookTickets = (props) => {
   );
 };
 
-// export default BookTickets;
-
-const DatVeXemPhim = (props) => {
-  return (
-    <div
-      className="max-w-screen-xl mx-auto ps-5 mb-0"
-      style={{
-        position: "fixed",
-        width: "100%",
-        height: "100%",
-        backgroundImage: `url(/img/film.jpg)`,
-        backgroundSize: "cover",
-      }}
-    >
-      <Tabs
-        className="text-white"
-        defaultActiveKey="1"
-        items={[
-          {
-            label: "Thông Tin Đặt Vé",
-            key: "1",
-            children: <BookTickets />,
-          },
-          {
-            label: "Kết Quả Đặt Vé",
-            key: "2",
-            children: <KetQuaDatVe />,
-          },
-        ]}
-      />
-    </div>
-  );
-};
-export default DatVeXemPhim;
-
 const KetQuaDatVe = (props) => {
   const dispatch = useDispatch();
   const { thongTinTaiKhoan } = useSelector((state) => state.thongTinTaiKhoan);
+  // const {}=useSelector((state)=>state.booking)
   useEffect(() => {
     dispatch(layThongTinTaiKhoanApi());
   }, []);
@@ -271,20 +273,23 @@ const KetQuaDatVe = (props) => {
   // console.log("tenPhim", tenPhim);
   return (
     <div>
-      <section className="text-gray-600 body-font overflow-hidden">
-        <div className="container px-5 py-24 mx-auto">
+      <section
+        className="text-gray-600 body-font min-h-screen"
+        style={{ maxHeight: "400px", overflowY: "scroll" }}
+      >
+        <div className="container px-5 py-24 mx-auto ">
           <div className="flex flex-wrap m-4 justify-center">
             {thongTinTaiKhoan.thongTinDatVe?.map((ticket, index) => {
-              console.log(ticket);
+              console.log("ticket", ticket);
               const seats = _.first(ticket.danhSachGhe);
               console.log("seats", seats);
               return (
                 <div className="p-4 xl:w-1/4 md:w-1/2 w-full" key={index}>
-                  <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
+                  <div className="h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative ">
                     <h2 className="text-sm tracking-widest title-font mb-1 font-medium  text-yellow-200">
-                      {seats.tenRap}-{seats.maHeThongRap}-{seats.m}
+                      {seats.tenRap}-{seats.maHeThongRap}
                     </h2>
-                    <h1 className="text-xl font-bold text-yellow-400 pb-4 mb-4 border-b border-gray-200 leading-none">
+                    <h1 className="text-lg font-bold text-yellow-400 pb-4 mb-4 border-b border-gray-200 leading-none">
                       {ticket.tenPhim}
                     </h1>
                     <div className="my-5">
@@ -398,9 +403,14 @@ const KetQuaDatVe = (props) => {
                           </svg>
                         </span>
                         Tên Ghế :{" "}
-                        <span className="text-yellow-500 mx-2">
-                          {seats.tenGhe}
-                        </span>
+                        {ticket.danhSachGhe?.map((itemGhe, index) => {
+                          console.log(itemGhe);
+                          return (
+                            <span className="text-yellow-500 mx-2" key={index}>
+                              {itemGhe.tenGhe}
+                            </span>
+                          );
+                        })}
                       </p>
                     </div>
                   </div>

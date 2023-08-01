@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllUserAPI, updateUserAPI } from "../../redux/slices/userSlice";
 import { userServ } from "../../services/userServices";
 import * as yup from "yup";
+import { message } from "antd";
 
 const FormAddUser = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+
   const { changeUsers } = useSelector((state) => state.user);
   const { isBtn } = useSelector((state) => state.btnReadOnly);
   // console.log("changeUsers: ", changeUsers);
@@ -32,11 +35,14 @@ const FormAddUser = () => {
       try {
         // console.log(values);
         const res = await userServ.addUser(values);
+        messageApi.success("Thêm Người thành công");
         // console.log("res: ", res);
         dispatch(getAllUserAPI());
+
         formik.resetForm();
         document.querySelector(".ant-drawer-close").click();
       } catch (error) {
+        messageApi.error(error.response.data.content);
         // console.log(error);
       }
     },
@@ -71,6 +77,7 @@ const FormAddUser = () => {
 
   return (
     <div>
+      {contextHolder}
       <form onSubmit={handleSubmit}>
         <div className="relative z-0 w-full mb-6 group">
           <input
@@ -187,7 +194,7 @@ const FormAddUser = () => {
           </div>
         </div>
         <div className="grid md:grid-cols-2 md:gap-6">
-          <div className="relative z-0 w-full mb-6 group">
+          <div className="relative z-0 w-full mb-6 group mt-6">
             <input
               onChange={handleChange}
               onBlur={handleBlur}
@@ -207,16 +214,16 @@ const FormAddUser = () => {
               className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Mã Nhóm
-              <span className="text-red-500">
-                (Vui lòng chỉ nhập từ GP01 tới GP09)
-              </span>
             </label>
+            {/* <span className="text-red-500">
+              (Vui lòng chỉ nhập từ GP01 tới GP09)
+            </span> */}
           </div>
-          <div className="relative z-0 w-full mb-6 group mt-3  ">
+          <div className="relative z-0 w-full mb-6 group ">
             <div>
               <label
                 htmlFor="maLoaiNguoiDung"
-                className="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-400"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-800"
               >
                 Chọn người dùng
               </label>
@@ -225,7 +232,7 @@ const FormAddUser = () => {
                 onBlur={handleBlur}
                 name="maLoaiNguoiDung"
                 value={values.maLoaiNguoiDung || ""}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className=" border-b-2 text-gray-900 text-sm     w-full p-2  dark:border-b-gray-900 dark:text-black dark:focus:border-b-green-700"
               >
                 <option value="QuanTri">Quản trị</option>
                 <option value="KhachHang">Khách hàng</option>
@@ -251,6 +258,7 @@ const FormAddUser = () => {
               .then((res) => {
                 console.log(res);
                 dispatch(updateUserAPI(res.data.content));
+                messageApi.success("update thành công");
                 // dispatch(getAllUserAPI());
                 document.querySelector(".ant-drawer-close").click();
                 formik.resetForm();
@@ -258,6 +266,7 @@ const FormAddUser = () => {
               })
               .catch((error) => {
                 console.log(error);
+                messageApi.error(error.response.data.content);
               });
           }}
           type="button "

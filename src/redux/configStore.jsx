@@ -15,5 +15,6 @@ export const store = configureStore({
     schedule: controlMovieSlice,
     booking: bookingSlice,
     thongTinTaiKhoan: userSlice,
+    // controlBooking:
   },
 });

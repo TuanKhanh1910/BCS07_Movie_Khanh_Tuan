@@ -1,12 +1,17 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import BookTickets from "../../pages/BookTickets/BookTickets";
 import { layDuLieuLocal } from "../../util/localStore";
-import { NavLink } from "react-router-dom";
 
 const CheckoutTemplate = () => {
-  if (!layDuLieuLocal("user")) {
-    return <NavLink to="/login"></NavLink>;
-  }
+  useEffect(() => {
+    const user = layDuLieuLocal("user");
+    if (user) {
+      console.log(user);
+    } else {
+      window.location.href = "http://localhost:3000/login";
+    }
+  }, []);
+
   return (
     <Fragment>
       <BookTickets />
