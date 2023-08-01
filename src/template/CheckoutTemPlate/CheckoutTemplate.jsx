@@ -1,14 +1,16 @@
 import React, { Fragment, useEffect } from "react";
 import BookTickets from "../../pages/BookTickets/BookTickets";
 import { layDuLieuLocal } from "../../util/localStore";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutTemplate = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     const user = layDuLieuLocal("user");
     if (user) {
       console.log(user);
     } else {
-      window.location.href = "http://localhost:3000/login";
+      return navigate("/login");
     }
   }, []);
 
