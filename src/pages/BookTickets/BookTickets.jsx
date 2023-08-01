@@ -211,7 +211,7 @@ const BookTickets = (props) => {
               </p>
               <p className="  text-white my-3">
                 Giờ Chiếu :{" "}
-                <span className="text-red-600 my-2">{gioChieu}</span>{" "}
+                <span className="text-red-600 my-2">{gioChieu}</span>
               </p>
               <hr />
               <div className="grid grid-cols-2 ">
